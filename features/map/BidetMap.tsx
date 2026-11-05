@@ -1,7 +1,13 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { CustomOverlayMap, Map, MapMarker, MarkerClusterer, useKakaoLoader } from "react-kakao-maps-sdk";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  CustomOverlayMap,
+  Map,
+  MapMarker,
+  MarkerClusterer,
+  useKakaoLoader,
+} from 'react-kakao-maps-sdk';
 
 type ToiletPin = {
   id: string;
@@ -9,24 +15,24 @@ type ToiletPin = {
   lat: number;
   lng: number;
   floor: string | null;
-  bidetType: "electronic_seat" | "hand_sprayer" | "both";
-  access: "public" | "customers_only" | "paid";
+  bidetType: 'electronic_seat' | 'hand_sprayer' | 'both';
+  access: 'public' | 'customers_only' | 'paid';
   is24h: boolean;
   wheelchair: boolean;
 };
 
 const SEOUL_CITY_HALL = { lat: 37.5666, lng: 126.9784 };
 
-const BIDET_LABEL: Record<ToiletPin["bidetType"], string> = {
-  electronic_seat: "Electronic bidet seat",
-  hand_sprayer: "Hand sprayer",
-  both: "Bidet seat + hand sprayer",
+const BIDET_LABEL: Record<ToiletPin['bidetType'], string> = {
+  electronic_seat: 'Electronic bidet seat',
+  hand_sprayer: 'Hand sprayer',
+  both: 'Bidet seat + hand sprayer',
 };
 
 export function BidetMap() {
   const [loading, error] = useKakaoLoader({
     appkey: process.env.NEXT_PUBLIC_KAKAO_JS_KEY!,
-    libraries: ["clusterer"],
+    libraries: ['clusterer'],
   });
   const [bbox, setBbox] = useState<string | null>(null);
   const [toilets, setToilets] = useState<ToiletPin[]>([]);
@@ -36,7 +42,7 @@ export function BidetMap() {
 
   // Ask the browser for the user's position and move the map there
   const locateMe = useCallback(() => {
-    if (!("geolocation" in navigator)) return;
+    if (!('geolocation' in navigator)) return;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
@@ -68,7 +74,7 @@ export function BidetMap() {
         .then((res) => res.json())
         .then((data: { toilets: ToiletPin[] }) => setToilets(data.toilets))
         .catch((err) => {
-          if (err.name !== "AbortError") console.error(err);
+          if (err.name !== 'AbortError') console.error(err);
         });
     }, 300);
     return () => {
@@ -78,7 +84,9 @@ export function BidetMap() {
   }, [bbox]);
 
   if (error) {
-    return <p className="p-4">Failed to load Kakao Maps. Check the API key and registered domain.</p>;
+    return (
+      <p className="p-4">Failed to load Kakao Maps. Check the API key and registered domain.</p>
+    );
   }
   if (loading) {
     return <div className="h-dvh w-full animate-pulse bg-neutral-200" />;
@@ -90,12 +98,14 @@ export function BidetMap() {
         ref={mapRef}
         center={SEOUL_CITY_HALL}
         level={7}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
         onIdle={(map) => {
           const bounds = map.getBounds();
           const sw = bounds.getSouthWest();
           const ne = bounds.getNorthEast();
-          setBbox([sw.getLng(), sw.getLat(), ne.getLng(), ne.getLat()].map((n) => n.toFixed(4)).join(","));
+          setBbox(
+            [sw.getLng(), sw.getLat(), ne.getLng(), ne.getLat()].map((n) => n.toFixed(4)).join(','),
+          );
         }}
         onClick={() => setSelected(null)}
       >
@@ -122,9 +132,15 @@ export function BidetMap() {
           type="button"
           onClick={locateMe}
           aria-label="Show my location"
-          className={`pointer-events-auto mr-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-900 shadow-lg ${selected ? "" : "mb-8"}`}
+          className={`pointer-events-auto mr-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-900 shadow-lg ${selected ? '' : 'mb-8'}`}
         >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <circle cx="12" cy="12" r="4" />
             <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
           </svg>
@@ -136,8 +152,8 @@ export function BidetMap() {
             <ul className="mt-2 space-y-1 text-sm text-neutral-600">
               <li>{BIDET_LABEL[selected.bidetType]}</li>
               {selected.floor && <li>Floor: {selected.floor}</li>}
-              <li>{selected.is24h ? "Open 24 hours" : "Check opening hours"}</li>
-              {selected.access === "customers_only" && <li>Customers only</li>}
+              <li>{selected.is24h ? 'Open 24 hours' : 'Check opening hours'}</li>
+              {selected.access === 'customers_only' && <li>Customers only</li>}
               {selected.wheelchair && <li>Wheelchair accessible</li>}
             </ul>
             <a
@@ -151,7 +167,6 @@ export function BidetMap() {
           </div>
         )}
       </div>
-
     </div>
   );
 }

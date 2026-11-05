@@ -1,13 +1,13 @@
-import { NextResponse, type NextRequest } from "next/server";
-import { z } from "zod";
-import { and, eq, sql } from "drizzle-orm";
-import { db } from "@/server/db/client";
-import { toilets } from "@/server/db/schema";
+import { NextResponse, type NextRequest } from 'next/server';
+import { z } from 'zod';
+import { and, eq, sql } from 'drizzle-orm';
+import { db } from '@/server/db/client';
+import { toilets } from '@/server/db/schema';
 
 // bbox = "minLng,minLat,maxLng,maxLat"
 const bboxSchema = z
   .string()
-  .transform((s) => s.split(",").map(Number))
+  .transform((s) => s.split(',').map(Number))
   .pipe(
     z.tuple([
       z.number().min(-180).max(180),
@@ -18,10 +18,10 @@ const bboxSchema = z
   );
 
 export async function GET(request: NextRequest) {
-  const parsed = bboxSchema.safeParse(request.nextUrl.searchParams.get("bbox"));
+  const parsed = bboxSchema.safeParse(request.nextUrl.searchParams.get('bbox'));
   if (!parsed.success) {
     return NextResponse.json(
-      { error: "Invalid bbox. Expected minLng,minLat,maxLng,maxLat" },
+      { error: 'Invalid bbox. Expected minLng,minLat,maxLng,maxLat' },
       { status: 400 },
     );
   }
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     .from(toilets)
     .where(
       and(
-        eq(toilets.status, "active"),
+        eq(toilets.status, 'active'),
         // Uses the GiST index: only toilets inside the visible map area
         sql`${toilets.location} && ST_MakeEnvelope(${minLng}::float8, ${minLat}::float8, ${maxLng}::float8, ${maxLat}::float8, 4326)`,
       ),

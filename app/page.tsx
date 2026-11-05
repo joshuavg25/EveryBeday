@@ -1,4 +1,4 @@
-import { BidetMap } from "@/features/map/BidetMap";
+import { BidetMap } from '@/features/map/BidetMap';
 
 export default function Home() {
   return (
