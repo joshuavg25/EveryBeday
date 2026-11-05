@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Map, MapMarker, MarkerClusterer, useKakaoLoader } from "react-kakao-maps-sdk";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CustomOverlayMap, Map, MapMarker, MarkerClusterer, useKakaoLoader } from "react-kakao-maps-sdk";
 
 type ToiletPin = {
   id: string;
@@ -31,6 +31,33 @@ export function BidetMap() {
   const [bbox, setBbox] = useState<string | null>(null);
   const [toilets, setToilets] = useState<ToiletPin[]>([]);
   const [selected, setSelected] = useState<ToiletPin | null>(null);
+  const mapRef = useRef<kakao.maps.Map>(null);
+  const [myLocation, setMyLocation] = useState<{ lat: number; lng: number } | null>(null);
+
+  // Ask the browser for the user's position and move the map there
+  const locateMe = useCallback(() => {
+    if (!("geolocation" in navigator)) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const loc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        setMyLocation(loc);
+        const map = mapRef.current;
+        if (map) {
+          map.setLevel(4);
+          map.panTo(new kakao.maps.LatLng(loc.lat, loc.lng));
+        }
+      },
+      () => {
+        // Permission denied or unavailable: keep the default center
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
+  }, []);
+
+  // Locate once when the map is ready
+  useEffect(() => {
+    if (!loading && !error) locateMe();
+  }, [loading, error, locateMe]);
 
   // Refetch toilets whenever the visible map area changes (debounced)
   useEffect(() => {
@@ -60,6 +87,7 @@ export function BidetMap() {
   return (
     <div className="relative h-dvh w-full">
       <Map
+        ref={mapRef}
         center={SEOUL_CITY_HALL}
         level={7}
         style={{ width: "100%", height: "100%" }}
@@ -81,28 +109,49 @@ export function BidetMap() {
             />
           ))}
         </MarkerClusterer>
+        {myLocation && (
+          <CustomOverlayMap position={myLocation} zIndex={5}>
+            <div className="h-4 w-4 rounded-full border-2 border-white bg-blue-500 shadow-[0_0_0_6px_rgba(59,130,246,0.25)]" />
+          </CustomOverlayMap>
+        )}
       </Map>
 
-      {selected && (
-        <div className="absolute inset-x-0 bottom-0 z-10 rounded-t-2xl bg-white p-5 text-neutral-900 shadow-2xl">
-          <h2 className="text-lg font-semibold">{selected.name}</h2>
-          <ul className="mt-2 space-y-1 text-sm text-neutral-600">
-            <li>{BIDET_LABEL[selected.bidetType]}</li>
-            {selected.floor && <li>Floor: {selected.floor}</li>}
-            <li>{selected.is24h ? "Open 24 hours" : "Check opening hours"}</li>
-            {selected.access === "customers_only" && <li>Customers only</li>}
-            {selected.wheelchair && <li>Wheelchair accessible</li>}
-          </ul>
-          <a
-            href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-4 inline-block rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white"
-          >
-            Directions
-          </a>
-        </div>
-      )}
+      {/* Bottom stack: the locate button sits right above the detail sheet */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-end gap-3">
+        <button
+          type="button"
+          onClick={locateMe}
+          aria-label="Show my location"
+          className={`pointer-events-auto mr-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-900 shadow-lg ${selected ? "" : "mb-8"}`}
+        >
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+          </svg>
+        </button>
+
+        {selected && (
+          <div className="pointer-events-auto w-full rounded-t-2xl bg-white p-5 text-neutral-900 shadow-2xl">
+            <h2 className="text-lg font-semibold">{selected.name}</h2>
+            <ul className="mt-2 space-y-1 text-sm text-neutral-600">
+              <li>{BIDET_LABEL[selected.bidetType]}</li>
+              {selected.floor && <li>Floor: {selected.floor}</li>}
+              <li>{selected.is24h ? "Open 24 hours" : "Check opening hours"}</li>
+              {selected.access === "customers_only" && <li>Customers only</li>}
+              {selected.wheelchair && <li>Wheelchair accessible</li>}
+            </ul>
+            <a
+              href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-block rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white"
+            >
+              Directions
+            </a>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
