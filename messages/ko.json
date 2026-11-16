@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "title": "EveryBeday: 서울 비데 화장실 지도",
+    "description": "서울의 비데 있는 화장실을 모은 커뮤니티 지도입니다. 가까운 곳을 찾고, 정보를 확인하고, 아는 곳을 추가해 보세요."
+  },
+  "common": {
+    "appName": "EveryBeday",
+    "back": "뒤로",
+    "backToMap": "지도로 돌아가기",
+    "cancel": "취소",
+    "close": "닫기",
+    "loading": "불러오는 중…",
+    "retry": "다시 시도",
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "yes": "예",
+    "no": "아니요"
+  },
+  "nav": {
+    "addToilet": "화장실 추가",
+    "moderation": "관리",
+    "privacy": "개인정보처리방침",
+    "language": "언어",
+    "account": "계정"
+  },
+  "filters": {
+    "label": "필터",
+    "open24h": "24시간",
+    "free": "무료",
+    "wheelchair": "휠체어",
+    "verified": "확인된 곳만",
+    "male": "남자",
+    "female": "여자"
+  },
+  "map": {
+    "nearest": "가까운 비데 찾기",
+    "finding": "찾는 중…",
+    "locate": "내 위치 보기",
+    "loadError": "지도를 불러오지 못했습니다. 연결을 확인하고 새로고침해 주세요.",
+    "empty": "이 지역에는 아직 등록된 비데 화장실이 없습니다.",
+    "emptyFiltered": "필터에 맞는 화장실이 없습니다.",
+    "locationOff": "가까운 비데를 찾으려면 위치 접근을 허용해 주세요.",
+    "nearestNone": "필터에 맞는 화장실이 아직 없습니다.",
+    "fetchError": "화장실 정보를 불러오지 못했습니다. 지도를 움직여 다시 시도해 주세요."
+  },
+  "toilet": {
+    "bidetType": {
+      "electronic_seat": "전자식 비데",
+      "hand_sprayer": "수동 비데(샤워기형)",
+      "both": "전자식 비데와 수동 비데"
+    },
+    "access": {
+      "public": "누구나 무료 이용",
+      "customers_only": "이용 고객 전용",
+      "paid": "유료"
+    },
+    "gender": {
+      "all": "남녀 화장실 모두",
+      "male": "남자 화장실만",
+      "female": "여자 화장실만",
+      "unisex": "남녀 공용"
+    },
+    "floor": "층: {floor}",
+    "open24h": "24시간 운영",
+    "hours": "운영 시간: {hours}",
+    "hoursUnknown": "운영 시간 정보 없음",
+    "wheelchair": "휠체어 이용 가능",
+    "unverified": "미확인",
+    "unverifiedHint": "최근에 추가된 곳입니다. 다른 사용자 두 명이 비데를 확인하면 확인된 곳으로 표시됩니다.",
+    "confirmedAgo": "{when} 비데 확인됨",
+    "stale": "6개월 넘게 비데가 확인되지 않았습니다.",
+    "votes": "최근 30일: {yes}명 확인, {no}명 없다고 제보",
+    "distance": "{distance} 거리",
+    "directions": "길찾기",
+    "details": "상세 보기",
+    "share": "공유",
+    "linkCopied": "링크를 복사했습니다",
+    "address": "주소",
+    "building": "건물",
+    "tip": "이용 팁",
+    "notFoundTitle": "지도에 없는 화장실입니다",
+    "notFoundBody": "비데가 없어졌다는 제보가 있어 삭제되었을 수 있습니다."
+  },
+  "confirm": {
+    "question": "비데가 아직 있나요?",
+    "yes": "네, 있어요",
+    "no": "아니요, 없어요",
+    "savedYes": "감사합니다. 오늘 확인된 것으로 표시했습니다.",
+    "savedNo": "감사합니다. 제보를 저장했습니다.",
+    "nowVerified": "감사합니다. 이제 확인된 화장실로 표시됩니다.",
+    "nowHidden": "감사합니다. 제보가 여러 건 접수되어 지도에서 잠시 내렸습니다.",
+    "signInFirst": "로그인하고 확인하기"
+  },
+  "report": {
+    "open": "문제 신고",
+    "title": "어떤 문제가 있나요?",
+    "reason": {
+      "no_bidet": "비데가 없어요",
+      "closed": "폐업한 곳이에요",
+      "wrong_location": "위치가 잘못됐어요",
+      "spam": "스팸이거나 허위 정보예요",
+      "other": "기타"
+    },
+    "note": "자세한 내용 (선택)",
+    "notePlaceholder": "관리자가 알아야 할 내용을 적어 주세요",
+    "send": "신고 보내기",
+    "sent": "신고를 접수했습니다. 관리자가 확인할 예정입니다."
+  },
+  "add": {
+    "title": "비데 화장실 추가",
+    "signInTitle": "로그인하고 화장실 추가하기",
+    "signInBody": "믿을 수 있는 지도를 위해 계정이 필요합니다. 몇 초면 됩니다.",
+    "locationStep": "핀이 화장실 입구에 오도록 지도를 움직여 주세요.",
+    "useSpot": "이 위치로 정하기",
+    "changeSpot": "위치 변경",
+    "outsideSeoul": "서울 밖의 위치입니다. EveryBeday는 현재 서울만 지원합니다.",
+    "name": "장소 이름",
+    "namePlaceholder": "예: 스타벅스 광화문점",
+    "building": "건물 (선택)",
+    "address": "주소 (선택)",
+    "floor": "층 (선택)",
+    "floorPlaceholder": "예: B1, 3F",
+    "bidetType": "어떤 비데인가요?",
+    "access": "누가 이용할 수 있나요?",
+    "gender": "어느 화장실에 있나요?",
+    "open24h": "24시간 운영",
+    "hours": "운영 시간 (선택)",
+    "hoursPlaceholder": "예: 10:00–22:00",
+    "wheelchair": "휠체어 이용 가능",
+    "note": "찾아가는 팁 (선택)",
+    "notePlaceholder": "예: 직원에게 비밀번호를 물어보세요",
+    "submit": "화장실 추가",
+    "submitting": "추가하는 중…",
+    "nameRequired": "장소 이름을 2자 이상 입력해 주세요.",
+    "duplicateTitle": "혹시 이 화장실인가요?",
+    "duplicateBody": "이 위치 바로 근처에 이미 등록된 화장실이 있습니다.",
+    "duplicateDistance": "핀에서 {distance}",
+    "duplicateContinue": "아니요, 다른 곳이에요",
+    "doneTitle": "지도에 추가했습니다",
+    "doneUnverified": "다른 사용자 두 명이 비데를 확인할 때까지 미확인으로 표시됩니다.",
+    "doneActive": "지금 바로 지도에 표시됩니다.",
+    "viewToilet": "보러 가기",
+    "addAnother": "하나 더 추가"
+  },
+  "login": {
+    "title": "EveryBeday 로그인",
+    "body": "화장실을 추가하거나, 비데를 확인하거나, 문제를 신고할 때만 계정이 필요합니다. 지도는 로그인 없이 볼 수 있습니다.",
+    "kakao": "카카오로 계속하기",
+    "google": "Google로 계속하기",
+    "privacy": "로그인 제공자가 전달한 표시 이름, 프로필 사진, 이메일을 저장합니다."
+  },
+  "admin": {
+    "title": "관리",
+    "notAllowed": "관리자 전용 페이지입니다.",
+    "pending": "미확인 화장실",
+    "hidden": "숨겨진 화장실",
+    "reports": "처리 대기 중인 신고",
+    "emptyPending": "대기 중인 등록이 없습니다.",
+    "emptyHidden": "숨겨진 화장실이 없습니다.",
+    "emptyReports": "처리할 신고가 없습니다.",
+    "approve": "승인",
+    "hide": "숨기기",
+    "restore": "복구",
+    "dismiss": "신고 종료",
+    "hideToilet": "화장실 숨기기",
+    "submittedBy": "{name} 님이 추가",
+    "reportedBy": "{name} 님이 신고",
+    "unknownUser": "탈퇴한 사용자",
+    "open": "상세 페이지 열기"
+  },
+  "errors": {
+    "generic": "문제가 발생했습니다. 다시 시도해 주세요.",
+    "network": "연결되지 않았습니다. 인터넷을 확인하고 다시 시도해 주세요.",
+    "unauthorized": "로그인이 필요합니다.",
+    "banned": "이 계정은 변경할 수 없습니다.",
+    "forbidden": "권한이 없습니다.",
+    "not_found": "더 이상 존재하지 않는 화장실입니다.",
+    "invalid_input": "입력한 내용 중 올바르지 않은 항목이 있습니다. 확인 후 다시 시도해 주세요.",
+    "daily_limit": "오늘 이용 한도에 도달했습니다. 내일 다시 시도해 주세요.",
+    "already_confirmed": "오늘 이미 이 화장실에 응답했습니다.",
+    "own_submission": "직접 추가한 화장실은 다른 사용자가 확인해야 합니다.",
+    "already_reported": "이미 신고한 화장실입니다.",
+    "server_error": "서버에 문제가 발생했습니다. 잠시 후 다시 시도해 주세요."
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "body": "EveryBeday에 없는 주소입니다."
+  },
+  "privacy": {
+    "title": "개인정보처리방침",
+    "updated": "최종 수정일: {date}",
+    "sections": [
+      {
+        "heading": "수집하는 정보",
+        "body": "카카오 또는 Google로 로그인하면 제공자가 전달한 표시 이름, 프로필 사진, 이메일 주소와 계정을 연결하는 식별자를 저장합니다. 또한 지도에 추가한 화장실, 확인 기록, 신고 내용을 저장합니다."
+      },
+      {
+        "heading": "위치 정보",
+        "body": "위치 접근을 허용하면 현재 위치는 브라우저에서 지도 중심을 맞추는 데 쓰이며, 주변 화장실을 조회할 때만 서버로 전송됩니다. 위치는 저장하지 않으며 계정과 연결하지 않습니다."
+      },
+      {
+        "heading": "이용 목적",
+        "body": "계정 정보는 로그인, 스팸 방지, 관리자의 등록 내용 검토에 사용합니다. 추가한 항목 옆에 표시 이름이 관리자에게 보일 수 있습니다. 개인정보를 판매하거나 광고에 사용하지 않습니다."
+      },
+      {
+        "heading": "관련 서비스",
+        "body": "지도는 카카오맵, 로그인은 카카오와 Google이 제공하며, 사이트는 호스팅 및 데이터베이스 업체를 통해 운영됩니다. 길찾기를 열면 카카오맵으로 이동하며, 해당 서비스의 정책이 적용됩니다."
+      },
+      {
+        "heading": "보관 기간",
+        "body": "계정 정보는 계정 삭제를 요청할 때까지 보관합니다. 추가한 화장실은 이름 없이 지도에 남습니다."
+      },
+      {
+        "heading": "이용자의 권리",
+        "body": "본인 정보의 사본이나 계정 삭제는 문의처로 요청할 수 있습니다."
+      }
+    ],
+    "contact": "문의: {email}"
+  }
+}
