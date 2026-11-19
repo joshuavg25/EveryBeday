@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "title": "EveryBeday: find bidet toilets in Seoul",
+    "description": "A community map of toilets with bidets in Seoul. See what's near you, check the details, and add the ones you know."
+  },
+  "common": {
+    "appName": "EveryBeday",
+    "back": "Back",
+    "backToMap": "Back to map",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "addToilet": "Add a toilet",
+    "moderation": "Moderation",
+    "privacy": "Privacy policy",
+    "language": "Language",
+    "account": "Account"
+  },
+  "filters": {
+    "label": "Filters",
+    "open24h": "Open 24h",
+    "free": "Free",
+    "wheelchair": "Wheelchair",
+    "verified": "Verified only",
+    "male": "Men",
+    "female": "Women"
+  },
+  "map": {
+    "nearest": "Nearest bidet",
+    "finding": "Finding…",
+    "locate": "Show my location",
+    "loadError": "The map didn't load. Check your connection and reload the page.",
+    "empty": "No bidet toilets on this part of the map yet.",
+    "emptyFiltered": "Nothing here matches your filters.",
+    "locationOff": "Turn on location access to find the nearest bidet.",
+    "nearestNone": "No toilets match your filters yet.",
+    "fetchError": "Couldn't load toilets. Move the map to try again."
+  },
+  "toilet": {
+    "bidetType": {
+      "electronic_seat": "Electronic bidet seat",
+      "hand_sprayer": "Hand sprayer",
+      "both": "Bidet seat and hand sprayer"
+    },
+    "access": {
+      "public": "Free for anyone",
+      "customers_only": "Customers only",
+      "paid": "Paid entry"
+    },
+    "gender": {
+      "all": "Men's and women's",
+      "male": "Men's only",
+      "female": "Women's only",
+      "unisex": "Shared, all genders"
+    },
+    "floor": "Floor: {floor}",
+    "open24h": "Open 24 hours",
+    "hours": "Hours: {hours}",
+    "hoursUnknown": "Hours not listed",
+    "wheelchair": "Wheelchair accessible",
+    "unverified": "Unverified",
+    "unverifiedHint": "Added recently. It becomes verified once two other people confirm the bidet.",
+    "confirmedAgo": "Bidet confirmed {when}",
+    "stale": "Nobody has confirmed this bidet in over 6 months.",
+    "votes": "Last 30 days: {yes} confirmed it, {no} said it's gone",
+    "distance": "{distance} away",
+    "directions": "Directions",
+    "details": "Details",
+    "share": "Share",
+    "linkCopied": "Link copied",
+    "address": "Address",
+    "building": "Building",
+    "tip": "Tip",
+    "notFoundTitle": "This toilet isn't on the map",
+    "notFoundBody": "It may have been removed after people reported the bidet was gone."
+  },
+  "confirm": {
+    "question": "Is the bidet still here?",
+    "yes": "Yes, it's here",
+    "no": "No, it's gone",
+    "savedYes": "Thanks. Marked as confirmed today.",
+    "savedNo": "Thanks. Your report is saved.",
+    "nowVerified": "Thanks. This toilet is now verified.",
+    "nowHidden": "Thanks. Enough people reported it, so it's off the map for now.",
+    "signInFirst": "Sign in to confirm"
+  },
+  "report": {
+    "open": "Report a problem",
+    "title": "What's wrong with this listing?",
+    "reason": {
+      "no_bidet": "There's no bidet",
+      "closed": "The place is closed for good",
+      "wrong_location": "The pin is in the wrong place",
+      "spam": "It's spam or fake",
+      "other": "Something else"
+    },
+    "note": "Details (optional)",
+    "notePlaceholder": "Anything a moderator should know",
+    "send": "Send report",
+    "sent": "Report sent. A moderator will check it."
+  },
+  "add": {
+    "title": "Add a bidet toilet",
+    "signInTitle": "Sign in to add a toilet",
+    "signInBody": "An account keeps the map trustworthy. It takes a few seconds.",
+    "locationStep": "Move the map until the pin sits on the toilet's entrance.",
+    "useSpot": "Use this spot",
+    "changeSpot": "Change location",
+    "outsideSeoul": "That spot is outside Seoul. EveryBeday only covers Seoul for now.",
+    "name": "Place name",
+    "namePlaceholder": "e.g. Starbucks Gwanghwamun",
+    "building": "Building (optional)",
+    "address": "Address (optional)",
+    "floor": "Floor (optional)",
+    "floorPlaceholder": "e.g. B1, 3F",
+    "bidetType": "What kind of bidet?",
+    "access": "Who can use it?",
+    "gender": "Which restrooms have it?",
+    "open24h": "Open 24 hours",
+    "hours": "Opening hours (optional)",
+    "hoursPlaceholder": "e.g. 10:00–22:00",
+    "wheelchair": "Wheelchair accessible",
+    "note": "Tip for finding it (optional)",
+    "notePlaceholder": "e.g. Ask the staff for the door code",
+    "submit": "Add toilet",
+    "submitting": "Adding…",
+    "nameRequired": "Enter a place name (at least 2 characters).",
+    "duplicateTitle": "Is it one of these?",
+    "duplicateBody": "There's already a toilet very close to this spot.",
+    "duplicateDistance": "{distance} from your pin",
+    "duplicateContinue": "No, mine is different",
+    "doneTitle": "Added to the map",
+    "doneUnverified": "It shows as unverified until two other people confirm the bidet.",
+    "doneActive": "It's live on the map now.",
+    "viewToilet": "View it",
+    "addAnother": "Add another"
+  },
+  "login": {
+    "title": "Sign in to EveryBeday",
+    "body": "You only need an account to add toilets, confirm bidets, or report problems. Browsing the map works without one.",
+    "kakao": "Continue with Kakao",
+    "google": "Continue with Google",
+    "privacy": "We store the display name, profile picture and email your provider shares with us."
+  },
+  "admin": {
+    "title": "Moderation",
+    "notAllowed": "This page is for moderators.",
+    "pending": "Unverified toilets",
+    "hidden": "Hidden toilets",
+    "reports": "Open reports",
+    "emptyPending": "No submissions waiting.",
+    "emptyHidden": "Nothing is hidden.",
+    "emptyReports": "No open reports.",
+    "approve": "Approve",
+    "hide": "Hide",
+    "restore": "Restore",
+    "dismiss": "Dismiss report",
+    "hideToilet": "Hide toilet",
+    "submittedBy": "Added by {name}",
+    "reportedBy": "Reported by {name}",
+    "unknownUser": "a deleted account",
+    "open": "Open listing"
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again.",
+    "network": "No connection. Check your internet and try again.",
+    "unauthorized": "Sign in to do that.",
+    "banned": "This account can't make changes.",
+    "forbidden": "You don't have permission to do that.",
+    "not_found": "That toilet no longer exists.",
+    "invalid_input": "Some details aren't valid. Check the form and try again.",
+    "daily_limit": "You've reached today's limit. Try again tomorrow.",
+    "already_confirmed": "You already answered for this toilet today.",
+    "own_submission": "Someone else needs to confirm a toilet you added.",
+    "already_reported": "You already reported this toilet.",
+    "server_error": "The server had a problem. Try again in a moment."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "That address doesn't lead anywhere on EveryBeday."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: {date}",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "body": "When you sign in with Kakao or Google, we store the display name, profile picture and email address the provider shares with us, plus an ID that links your account to that provider. We also store what you add to the map: toilets, confirmations and reports."
+      },
+      {
+        "heading": "Your location",
+        "body": "When you allow location access, your position is used in your browser to center the map and is sent to our server only to look up nearby toilets. We don't store it or link it to your account."
+      },
+      {
+        "heading": "How we use it",
+        "body": "Your account information is used to sign you in, to limit spam, and to let moderators review submissions. Your display name may appear to moderators next to things you added. We don't sell personal information or use it for advertising."
+      },
+      {
+        "heading": "Who else is involved",
+        "body": "The map is provided by Kakao Maps, sign-in by Kakao and Google, and the site runs on hosting and database providers that process data on our behalf. Opening directions takes you to Kakao Map, which has its own policy."
+      },
+      {
+        "heading": "How long we keep it",
+        "body": "Account information is kept until you ask us to delete your account. Toilets you added stay on the map without your name."
+      },
+      {
+        "heading": "Your choices",
+        "body": "You can ask for a copy of your data or have your account deleted by contacting us."
+      }
+    ],
+    "contact": "Contact: {email}"
+  }
+}

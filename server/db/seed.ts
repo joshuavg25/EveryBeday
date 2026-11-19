@@ -1,7 +1,9 @@
+import { like } from 'drizzle-orm';
 import { db } from './client';
 import { toilets, type NewToilet } from './schema';
 
-// Dummy data for local testing. Remove before launch.
+// Dummy data for local testing. Every name starts with [TEST] so the rows are easy to find.
+// Remove them before launch with: npm run db:seed -- --clear
 const sample: NewToilet[] = [
   {
     name: '[TEST] Seoul City Hall',
@@ -28,6 +30,7 @@ const sample: NewToilet[] = [
     access: 'customers_only',
     is24h: false,
     openingHours: '10:30-22:00',
+    note: 'Ask the staff for the door code',
   },
   {
     name: '[TEST] Gwanghwamun',
@@ -52,6 +55,7 @@ const sample: NewToilet[] = [
     floor: 'B2',
     bidetType: 'electronic_seat',
     access: 'public',
+    gender: 'female',
     is24h: true,
     wheelchair: true,
   },
@@ -66,9 +70,22 @@ const sample: NewToilet[] = [
 ];
 
 async function main() {
-  const rows = sample.map((t) => ({ ...t, status: 'active' as const }));
-  await db.insert(toilets).values(rows);
-  console.log(`Inserted ${rows.length} test toilets`);
+  // Running the seed twice must not create duplicates: clear the old test rows first
+  const removed = await db
+    .delete(toilets)
+    .where(like(toilets.name, '[TEST]%'))
+    .returning({ id: toilets.id });
+  console.log(`Removed ${removed.length} old test toilets`);
+
+  if (!process.argv.includes('--clear')) {
+    const rows = sample.map((t) => ({
+      ...t,
+      status: 'active' as const,
+      lastConfirmedAt: new Date(),
+    }));
+    await db.insert(toilets).values(rows);
+    console.log(`Inserted ${rows.length} test toilets`);
+  }
   process.exit(0);
 }
 
