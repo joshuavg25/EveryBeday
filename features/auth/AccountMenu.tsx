@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { UserIcon } from '@/components/icons';
+import { useTheme, type ThemeMode } from '@/components/ThemeProvider';
 import { useI18n } from '@/i18n/I18nProvider';
 import { LOCALE_COOKIE, localeNames, locales, type Locale } from '@/i18n/config';
 import { loginHref } from './login';
@@ -21,6 +22,7 @@ const itemClass =
 // and sign in / sign out.
 export function AccountMenu() {
   const { t, locale } = useI18n();
+  const { mode, setMode } = useTheme();
   const { data: session, status } = useSession();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -53,6 +55,11 @@ export function AccountMenu() {
 
   const user = session?.user;
   const canModerate = user?.role === 'moderator' || user?.role === 'admin';
+  const themeOptions: { mode: ThemeMode; label: string }[] = [
+    { mode: 'light', label: t('nav.themeLight') },
+    { mode: 'dark', label: t('nav.themeDark') },
+    { mode: 'system', label: t('nav.themeSystem') },
+  ];
 
   return (
     <div ref={containerRef} className="relative">
@@ -62,7 +69,7 @@ export function AccountMenu() {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="shadow-float text-ink flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-white"
+        className="shadow-float text-ink bg-surface flex h-11 w-11 items-center justify-center overflow-hidden rounded-full"
       >
         {user?.image ? (
           // Profile pictures come from Kakao/Google hosts, so a plain img avoids image config
@@ -76,7 +83,7 @@ export function AccountMenu() {
       {open && (
         <div
           role="menu"
-          className="shadow-float absolute top-13 right-0 z-30 w-60 rounded-2xl bg-white p-2"
+          className="shadow-float bg-surface absolute top-13 right-0 z-30 w-60 rounded-2xl p-2"
         >
           {user && <p className="text-ink-soft truncate px-3 pt-1.5 pb-2 text-sm">{user.name}</p>}
 
@@ -91,6 +98,21 @@ export function AccountMenu() {
           <Link href={`/${locale}/privacy`} role="menuitem" className={itemClass}>
             {t('nav.privacy')}
           </Link>
+
+          <div className="border-line my-1.5 border-t" />
+          <p className="text-ink-soft px-3 pt-1 pb-1 text-xs font-medium">{t('nav.theme')}</p>
+          {themeOptions.map((option) => (
+            <button
+              key={option.mode}
+              type="button"
+              role="menuitemradio"
+              aria-checked={option.mode === mode}
+              onClick={() => setMode(option.mode)}
+              className={`${itemClass} ${option.mode === mode ? 'font-semibold' : ''}`}
+            >
+              {option.label}
+            </button>
+          ))}
 
           <div className="border-line my-1.5 border-t" />
           <p className="text-ink-soft px-3 pt-1 pb-1 text-xs font-medium">{t('nav.language')}</p>

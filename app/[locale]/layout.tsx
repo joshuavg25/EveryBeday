@@ -23,10 +23,29 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0b8a83',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#0b8a83' },
+    { media: '(prefers-color-scheme: dark)', color: '#086f69' },
+  ],
   width: 'device-width',
   initialScale: 1,
 };
+
+const themeScript = `
+  try {
+    var savedTheme = localStorage.getItem('everybeday-theme');
+    var initialTheme =
+      savedTheme === 'light' || savedTheme === 'dark'
+        ? savedTheme
+        : window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+    document.documentElement.dataset.theme = initialTheme;
+  } catch {
+    document.documentElement.dataset.theme = 'light';
+  }
+  document.documentElement.dataset.themeReady = 'true';
+`;
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[locale]'>) {
   const { locale } = await params;
@@ -34,7 +53,10 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
   const messages = await getMessages(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script id="theme-init" dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <Providers locale={locale} messages={messages}>
           {children}

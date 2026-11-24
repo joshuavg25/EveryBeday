@@ -36,7 +36,7 @@ export function LoginButtons() {
         type="button"
         disabled={pending}
         onClick={() => start('google')}
-        className={`${base} border-line text-ink hover:bg-mist border bg-white`}
+        className={`${base} border-line text-ink hover:bg-mist bg-surface border`}
       >
         {t('login.google')}
       </button>

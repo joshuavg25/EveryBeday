@@ -26,7 +26,7 @@ export function ToiletSheet({
   return (
     <section
       aria-label={toilet.name}
-      className="animate-sheet-up shadow-sheet text-ink pointer-events-auto max-h-[72dvh] w-full overflow-y-auto rounded-t-3xl bg-white px-5 pt-4 pb-6 sm:mx-auto sm:mb-4 sm:max-w-md sm:rounded-3xl"
+      className="animate-sheet-up shadow-sheet text-ink bg-surface pointer-events-auto max-h-[72dvh] w-full overflow-y-auto rounded-t-3xl px-5 pt-4 pb-6 sm:mx-auto sm:mb-4 sm:max-w-md sm:rounded-3xl"
     >
       <div className="flex items-start justify-between gap-3">
         <h2 className="text-xl leading-tight font-bold">{toilet.name}</h2>

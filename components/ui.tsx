@@ -7,9 +7,9 @@ const buttonBase =
 
 const buttonVariants = {
   primary: 'bg-water text-white hover:bg-water-deep',
-  secondary: 'border border-line bg-white text-ink hover:bg-mist',
+  secondary: 'border border-line bg-surface text-ink hover:bg-mist',
   quiet: 'text-ink-soft hover:bg-mist hover:text-ink',
-  danger: 'border border-danger/30 bg-white text-danger hover:bg-danger-soft',
+  danger: 'border border-danger/30 bg-surface text-danger hover:bg-danger-soft',
 } as const;
 
 export type ButtonVariant = keyof typeof buttonVariants;
@@ -43,7 +43,7 @@ export function Chip({
       aria-pressed={pressed}
       onClick={onToggle}
       className={`shadow-float min-h-9 shrink-0 rounded-full px-3.5 text-sm font-medium whitespace-nowrap transition-colors ${
-        pressed ? 'bg-ink text-white' : 'text-ink hover:bg-foam bg-white'
+        pressed ? 'bg-ink text-white' : 'text-ink hover:bg-foam bg-surface'
       }`}
     >
       {children}

@@ -17,7 +17,7 @@ type Duplicate = { id: string; name: string; distanceM: number };
 type Created = { id: string; status: ToiletStatus };
 
 const inputClass =
-  'border-line mt-1.5 block min-h-11 w-full rounded-xl border bg-white px-3 text-[15px] font-normal';
+  'border-line mt-1.5 block min-h-11 w-full rounded-xl border bg-surface px-3 text-[15px] font-normal';
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -52,7 +52,7 @@ function Choice<T extends string>({
             className={`flex min-h-11 cursor-pointer items-center rounded-full border px-4 text-[15px] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 ${
               value === option
                 ? 'border-ink bg-ink text-white'
-                : 'border-line text-ink hover:bg-mist bg-white'
+                : 'border-line text-ink hover:bg-mist bg-surface'
             }`}
           >
             <input
@@ -122,7 +122,7 @@ export function AddToiletForm() {
 
   if (sessionStatus === 'unauthenticated') {
     return (
-      <div className="rounded-2xl bg-white p-6">
+      <div className="bg-surface rounded-2xl p-6">
         <h2 className="text-lg font-semibold">{t('add.signInTitle')}</h2>
         <p className="text-ink-soft mt-1.5">{t('add.signInBody')}</p>
         <Link href={loginHref(locale, `/${locale}/add`)} className={buttonClass('primary', 'mt-5')}>
@@ -134,7 +134,7 @@ export function AddToiletForm() {
 
   if (created) {
     return (
-      <div className="rounded-2xl bg-white p-6">
+      <div className="bg-surface rounded-2xl p-6">
         <h2 className="text-lg font-semibold">{t('add.doneTitle')}</h2>
         <p className="text-ink-soft mt-1.5">
           {created.status === 'active' ? t('add.doneActive') : t('add.doneUnverified')}
@@ -354,7 +354,7 @@ export function AddToiletForm() {
               <li key={d.id}>
                 <Link
                   href={`/${locale}/toilets/${d.id}`}
-                  className="flex min-h-11 items-center justify-between gap-3 rounded-xl bg-white px-3.5 text-[15px] font-medium"
+                  className="bg-surface flex min-h-11 items-center justify-between gap-3 rounded-xl px-3.5 text-[15px] font-medium"
                 >
                   <span className="truncate">{d.name}</span>
                   <span className="text-ink-soft shrink-0 text-sm font-normal">

@@ -92,11 +92,11 @@ async function ToiletContent({ params }: Pick<Props, 'params'>) {
         <ShareButton path={`/${locale}/toilets/${toilet.id}`} title={toilet.name} />
       </div>
 
-      <div className="mt-6 rounded-2xl bg-white p-5">
+      <div className="bg-surface mt-6 rounded-2xl p-5">
         <ToiletInfo toilet={toilet} t={t} locale={locale} full />
       </div>
 
-      <div className="mt-3 rounded-2xl bg-white p-5">
+      <div className="bg-surface mt-3 rounded-2xl p-5">
         <ConfirmBidet toiletId={toilet.id} />
       </div>
 
