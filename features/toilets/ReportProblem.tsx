@@ -65,7 +65,7 @@ export function ReportProblem({ toiletId }: { toiletId: string }) {
 
       <dialog
         ref={dialogRef}
-        className="text-ink backdrop:bg-ink/40 m-auto w-[min(92vw,26rem)] rounded-2xl bg-white p-0"
+        className="text-ink backdrop:bg-ink/40 bg-surface m-auto w-[min(92vw,26rem)] rounded-2xl p-0"
       >
         <form onSubmit={submit} className="space-y-4 p-5">
           <div className="flex items-start justify-between gap-3">

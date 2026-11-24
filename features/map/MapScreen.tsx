@@ -203,7 +203,7 @@ export function MapScreen() {
       {/* Top: brand, account menu, filters. Empty areas let touches through to the map. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 space-y-2.5 pt-3">
         <div className="flex items-center justify-between px-3">
-          <h1 className="shadow-float text-ink pointer-events-auto flex h-11 items-center gap-1.5 rounded-full bg-white pr-4 pl-3 text-[17px] font-bold tracking-tight">
+          <h1 className="shadow-float text-ink bg-surface pointer-events-auto flex h-11 items-center gap-1.5 rounded-full pr-4 pl-3 text-[17px] font-bold tracking-tight">
             <DropletIcon className="text-water" fill="currentColor" strokeWidth={0} />
             {t('common.appName')}
           </h1>
@@ -240,7 +240,7 @@ export function MapScreen() {
         {(toast ?? status) && (
           <p
             role="status"
-            className="shadow-float bg-ink mx-auto w-fit max-w-[calc(100%-1.5rem)] rounded-2xl px-4 py-2 text-center text-sm text-white"
+            className="shadow-float mx-auto w-fit max-w-[calc(100%-1.5rem)] rounded-2xl bg-[#0f2a2e] px-4 py-2 text-center text-sm text-white"
           >
             {toast ?? status}
           </p>
@@ -257,7 +257,7 @@ export function MapScreen() {
               type="button"
               onClick={findNearest}
               disabled={finding || !map}
-              className="shadow-float bg-water hover:bg-water-deep pointer-events-auto flex min-h-12 items-center gap-2 rounded-full pr-6 pl-5 text-base font-semibold text-white disabled:opacity-70"
+              className="shadow-float pointer-events-auto flex min-h-12 items-center gap-2 rounded-full bg-[#0b8a83] pr-6 pl-5 text-base font-semibold text-white hover:bg-[#086f69] disabled:opacity-70"
             >
               <DropletIcon fill="currentColor" strokeWidth={0} />
               {finding ? t('map.finding') : t('map.nearest')}
@@ -269,7 +269,7 @@ export function MapScreen() {
                 href={`/${locale}/add`}
                 aria-label={t('nav.addToilet')}
                 title={t('nav.addToilet')}
-                className="shadow-float text-ink flex h-11 w-11 items-center justify-center rounded-full bg-white"
+                className="shadow-float text-ink bg-surface flex h-11 w-11 items-center justify-center rounded-full"
               >
                 <PlusIcon />
               </Link>
@@ -279,7 +279,7 @@ export function MapScreen() {
               onClick={showMyLocation}
               aria-label={t('map.locate')}
               title={t('map.locate')}
-              className="shadow-float text-ink flex h-11 w-11 items-center justify-center rounded-full bg-white"
+              className="shadow-float text-ink bg-surface flex h-11 w-11 items-center justify-center rounded-full"
             >
               <LocateIcon />
             </button>

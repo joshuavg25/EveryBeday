@@ -21,7 +21,11 @@
     "moderation": "Moderation",
     "privacy": "Privacy policy",
     "language": "Language",
-    "account": "Account"
+    "account": "Account",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System"
   },
   "filters": {
     "label": "Filters",

@@ -112,7 +112,7 @@ export function ModerationQueue() {
   const { pending, hidden, reports } = state.queue;
 
   const toiletCard = (toilet: QueueToilet, actions: ReactNode) => (
-    <li key={toilet.id} className="rounded-2xl bg-white p-4">
+    <li key={toilet.id} className="bg-surface rounded-2xl p-4">
       <Link
         href={`/${locale}/toilets/${toilet.id}`}
         className="font-semibold underline-offset-4 hover:underline"
@@ -147,7 +147,7 @@ export function ModerationQueue() {
 
       <Section title={t('admin.reports')} count={reports.length} empty={t('admin.emptyReports')}>
         {reports.map((report) => (
-          <li key={report.id} className="rounded-2xl bg-white p-4">
+          <li key={report.id} className="bg-surface rounded-2xl p-4">
             <p className="font-semibold">{t(`report.reason.${report.reason}`)}</p>
             <Link
               href={`/${locale}/toilets/${report.toilet.id}`}

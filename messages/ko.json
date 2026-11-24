@@ -21,7 +21,11 @@
     "moderation": "관리",
     "privacy": "개인정보처리방침",
     "language": "언어",
-    "account": "계정"
+    "account": "계정",
+    "theme": "테마",
+    "themeLight": "밝게",
+    "themeDark": "어둡게",
+    "themeSystem": "시스템 설정"
   },
   "filters": {
     "label": "필터",

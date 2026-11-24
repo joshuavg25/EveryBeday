@@ -120,7 +120,7 @@ export function LocationPicker({
           onClick={goToMyLocation}
           aria-label={t('map.locate')}
           title={t('map.locate')}
-          className="shadow-float text-ink absolute right-3 bottom-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white"
+          className="shadow-float text-ink bg-surface absolute right-3 bottom-3 z-10 flex h-11 w-11 items-center justify-center rounded-full"
         >
           <LocateIcon />
         </button>
