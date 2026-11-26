@@ -38,6 +38,66 @@ export function MapScreen() {
 
   const { toilets, failed, settled } = useToilets(bbox, filters, version);
 
+  // Keep the Next.js development controls above the map's add/location controls.
+  // Next.js renders these controls inside a shadow root, so the offset has to be
+  // applied after the portal is mounted and whenever its menu opens.
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') return;
+
+    const indicatorBottom = '144px';
+    const panelBottom = '190px';
+    const rightOffset = '16px';
+    let shadowObserver: MutationObserver | null = null;
+
+    const setImportantStyle = (element: HTMLElement, property: string, value: string) => {
+      if (
+        element.style.getPropertyValue(property) !== value ||
+        element.style.getPropertyPriority(property) !== 'important'
+      ) {
+        element.style.setProperty(property, value, 'important');
+      }
+    };
+
+    const applyPosition = (root: ShadowRoot) => {
+      const indicator = root.querySelector<HTMLElement>('#devtools-indicator');
+      const panel = root.querySelector<HTMLElement>('#nextjs-dev-tools-menu');
+
+      if (indicator) {
+        setImportantStyle(indicator, 'bottom', indicatorBottom);
+        setImportantStyle(indicator, 'right', rightOffset);
+      }
+      if (panel) {
+        setImportantStyle(panel, 'bottom', panelBottom);
+        setImportantStyle(panel, 'right', rightOffset);
+      }
+    };
+
+    const observePortal = () => {
+      const portal = document.querySelector('nextjs-portal');
+      const root = portal?.shadowRoot;
+      if (!root) return;
+
+      applyPosition(root);
+      shadowObserver?.disconnect();
+      shadowObserver = new MutationObserver(() => applyPosition(root));
+      shadowObserver.observe(root, {
+        attributes: true,
+        attributeFilter: ['class', 'data-rendered', 'style'],
+        childList: true,
+        subtree: true,
+      });
+    };
+
+    const portalObserver = new MutationObserver(observePortal);
+    portalObserver.observe(document.body, { childList: true, subtree: true });
+    observePortal();
+
+    return () => {
+      portalObserver.disconnect();
+      shadowObserver?.disconnect();
+    };
+  }, []);
+
   const showToast = useCallback((text: string) => {
     setToast(text);
     clearTimeout(toastTimer.current);
