@@ -18,6 +18,7 @@ import {
   useToilets,
   type MapFilters,
 } from './useToilets';
+import { toiletName } from '@/features/toilets/format';
 
 type LatLng = { lat: number; lng: number };
 
@@ -236,7 +237,7 @@ export function MapScreen() {
                 <MapMarker
                   key={toilet.id}
                   position={{ lat: toilet.lat, lng: toilet.lng }}
-                  title={toilet.name}
+                  title={toiletName(toilet, locale)}
                   image={toilet.status === 'pending' ? PIN.unverified : PIN.verified}
                   onClick={() => select(toilet)}
                 />
@@ -247,7 +248,7 @@ export function MapScreen() {
           {selected && (
             <MapMarker
               position={{ lat: selected.lat, lng: selected.lng }}
-              title={selected.name}
+              title={toiletName(selected, locale)}
               image={PIN.selected}
               zIndex={10}
             />

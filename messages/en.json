@@ -118,7 +118,10 @@
     "useSpot": "Use this spot",
     "changeSpot": "Change location",
     "outsideSeoul": "That spot is outside Seoul. EveryBeday only covers Seoul for now.",
-    "name": "Place name",
+    "name": "Place name in English",
+    "nameRequired": "Enter the place name in English (at least 2 characters).",
+    "nameKo": "Place name in Korean (optional)",
+    "nameKoPlaceholder": "e.g. 스타벅스 광화문점",
     "namePlaceholder": "e.g. Starbucks Gwanghwamun",
     "building": "Building (optional)",
     "address": "Address (optional)",
@@ -135,7 +138,6 @@
     "notePlaceholder": "e.g. Ask the staff for the door code",
     "submit": "Add toilet",
     "submitting": "Adding…",
-    "nameRequired": "Enter a place name (at least 2 characters).",
     "duplicateTitle": "Is it one of these?",
     "duplicateBody": "There's already a toilet very close to this spot.",
     "duplicateDistance": "{distance} from your pin",
@@ -170,7 +172,8 @@
     "submittedBy": "Added by {name}",
     "reportedBy": "Reported by {name}",
     "unknownUser": "a deleted account",
-    "open": "Open listing"
+    "open": "Open listing",
+    "noKoreanName": "한글 이름 없음"
   },
   "errors": {
     "generic": "Something went wrong. Try again.",

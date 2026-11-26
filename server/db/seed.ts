@@ -7,6 +7,7 @@ import { toilets, type NewToilet } from './schema';
 const sample: NewToilet[] = [
   {
     name: '[TEST] Seoul City Hall',
+    nameKo: '[TEST] 서울시청',
     location: { x: 126.9779, y: 37.5663 },
     floor: '1F',
     bidetType: 'electronic_seat',
@@ -16,6 +17,7 @@ const sample: NewToilet[] = [
   },
   {
     name: '[TEST] Seoul Station',
+    nameKo: '[TEST] 서울역',
     location: { x: 126.9707, y: 37.5547 },
     floor: 'B1',
     bidetType: 'electronic_seat',
@@ -24,6 +26,7 @@ const sample: NewToilet[] = [
   },
   {
     name: '[TEST] Myeongdong',
+    nameKo: '[TEST] 명동',
     location: { x: 126.9863, y: 37.5609 },
     floor: '2F',
     bidetType: 'both',
@@ -34,6 +37,7 @@ const sample: NewToilet[] = [
   },
   {
     name: '[TEST] Gwanghwamun',
+    nameKo: '[TEST] 광화문',
     location: { x: 126.9768, y: 37.5759 },
     floor: 'B1',
     bidetType: 'electronic_seat',
@@ -43,6 +47,7 @@ const sample: NewToilet[] = [
   },
   {
     name: '[TEST] Hongdae',
+    nameKo: '[TEST] 홍대',
     location: { x: 126.9245, y: 37.5572 },
     floor: '3F',
     bidetType: 'hand_sprayer',
@@ -51,6 +56,7 @@ const sample: NewToilet[] = [
   },
   {
     name: '[TEST] Gangnam Station',
+    nameKo: '[TEST] 강남역',
     location: { x: 127.0276, y: 37.4979 },
     floor: 'B2',
     bidetType: 'electronic_seat',
@@ -60,6 +66,7 @@ const sample: NewToilet[] = [
     wheelchair: true,
   },
   {
+    // No Korean name: shows how the Korean site falls back to the English name
     name: '[TEST] Jamsil',
     location: { x: 127.1001, y: 37.5133 },
     floor: 'B1',

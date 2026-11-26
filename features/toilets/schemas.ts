@@ -20,7 +20,9 @@ const optionalText = (max: number) =>
     .optional();
 
 export const createToiletSchema = z.object({
+  // English name is required; the Korean name is optional
   name: z.string().trim().min(2).max(100),
+  nameKo: optionalText(100),
   lat: z.number().min(SEOUL_BOUNDS.minLat).max(SEOUL_BOUNDS.maxLat),
   lng: z.number().min(SEOUL_BOUNDS.minLng).max(SEOUL_BOUNDS.maxLng),
   address: optionalText(200),

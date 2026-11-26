@@ -118,8 +118,10 @@
     "useSpot": "이 위치로 정하기",
     "changeSpot": "위치 변경",
     "outsideSeoul": "서울 밖의 위치입니다. EveryBeday는 현재 서울만 지원합니다.",
-    "name": "장소 이름",
-    "namePlaceholder": "예: 스타벅스 광화문점",
+    "name": "영문 장소 이름",
+    "namePlaceholder": "예: Starbucks Gwanghwamun",
+    "nameKo": "한글 장소 이름 (선택)",
+    "nameKoPlaceholder": "예: 스타벅스 광화문점",
     "building": "건물 (선택)",
     "address": "주소 (선택)",
     "floor": "층 (선택)",
@@ -135,7 +137,7 @@
     "notePlaceholder": "예: 직원에게 비밀번호를 물어보세요",
     "submit": "화장실 추가",
     "submitting": "추가하는 중…",
-    "nameRequired": "장소 이름을 2자 이상 입력해 주세요.",
+    "nameRequired": "영문 장소 이름을 2자 이상 입력해 주세요.",
     "duplicateTitle": "혹시 이 화장실인가요?",
     "duplicateBody": "이 위치 바로 근처에 이미 등록된 화장실이 있습니다.",
     "duplicateDistance": "핀에서 {distance}",
@@ -170,7 +172,8 @@
     "submittedBy": "{name} 님이 추가",
     "reportedBy": "{name} 님이 신고",
     "unknownUser": "탈퇴한 사용자",
-    "open": "상세 페이지 열기"
+    "open": "상세 페이지 열기",
+    "noKoreanName": "한글 이름 없음"
   },
   "errors": {
     "generic": "문제가 발생했습니다. 다시 시도해 주세요.",

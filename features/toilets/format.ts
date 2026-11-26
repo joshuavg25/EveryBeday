@@ -25,6 +25,19 @@ export function formatAgo(iso: string, locale: Locale, now = Date.now()) {
 export const isStale = (iso: string | null, now = Date.now()) =>
   iso !== null && daysSince(iso, now) > STALE_AFTER_DAYS;
 
-// Opens Kakao Map with this place set as the destination
-export const kakaoDirectionsUrl = (toilet: { name: string; lat: number; lng: number }) =>
-  `https://map.kakao.com/link/to/${encodeURIComponent(toilet.name)},${toilet.lat},${toilet.lng}`;
+type Named = { name: string; nameKo: string | null };
+
+// The name to show: Korean on the Korean site when there is one, otherwise the English name
+export const toiletName = (toilet: Named, locale: Locale) =>
+  locale === 'ko' && toilet.nameKo ? toilet.nameKo : toilet.name;
+
+// The other language's name, shown as a smaller second line when both exist
+export const secondaryName = (toilet: Named, locale: Locale) => {
+  if (!toilet.nameKo) return null;
+  return locale === 'ko' ? toilet.name : toilet.nameKo;
+};
+
+// Opens Kakao Map with this place set as the destination. Kakao Map is a Korean app, so the
+// destination label uses the Korean name when there is one.
+export const kakaoDirectionsUrl = (toilet: Named & { lat: number; lng: number }) =>
+  `https://map.kakao.com/link/to/${encodeURIComponent(toilet.nameKo ?? toilet.name)},${toilet.lat},${toilet.lng}`;

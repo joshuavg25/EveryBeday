@@ -9,7 +9,9 @@ export type ToiletStatus = 'pending' | 'active' | 'hidden';
 // What the map needs for a marker and the bottom sheet
 export type ToiletPin = {
   id: string;
+  // English name (always present) and Korean name (optional). Use toiletName() to pick one.
   name: string;
+  nameKo: string | null;
   lat: number;
   lng: number;
   floor: string | null;
@@ -45,7 +47,14 @@ export type QueueReport = {
   note: string | null;
   createdAt: string;
   reportedBy: string | null;
-  toilet: { id: string; name: string; status: ToiletStatus; lat: number; lng: number };
+  toilet: {
+    id: string;
+    name: string;
+    nameKo: string | null;
+    status: ToiletStatus;
+    lat: number;
+    lng: number;
+  };
 };
 
 export type ModerationQueue = {

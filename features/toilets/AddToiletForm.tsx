@@ -8,12 +8,12 @@ import { api, ApiClientError, errorMessage } from '@/features/api/client';
 import { loginHref } from '@/features/auth/login';
 import { MiniMap } from '@/features/map/MiniMap';
 import { useI18n } from '@/i18n/I18nProvider';
-import { formatDistance } from './format';
+import { formatDistance, toiletName } from './format';
 import { LocationPicker, type PickedLocation } from './LocationPicker';
 import { ACCESS_TYPES, BIDET_TYPES, createToiletSchema, GENDER_TYPES } from './schemas';
 import type { AccessType, BidetType, GenderType, ToiletStatus } from './types';
 
-type Duplicate = { id: string; name: string; distanceM: number };
+type Duplicate = { id: string; name: string; nameKo: string | null; distanceM: number };
 type Created = { id: string; status: ToiletStatus };
 
 const inputClass =
@@ -100,6 +100,7 @@ export function AddToiletForm() {
   const [picking, setPicking] = useState(true);
 
   const [name, setName] = useState('');
+  const [nameKo, setNameKo] = useState('');
   const [buildingName, setBuildingName] = useState('');
   const [address, setAddress] = useState('');
   const [floor, setFloor] = useState('');
@@ -149,6 +150,7 @@ export function AddToiletForm() {
               // Keep nothing from the previous toilet except the general area
               setCreated(null);
               setName('');
+              setNameKo('');
               setFloor('');
               setNote('');
               setDuplicates(null);
@@ -186,6 +188,7 @@ export function AddToiletForm() {
     if (!location) return;
     const parsed = createToiletSchema.safeParse({
       name,
+      nameKo,
       lat: location.lat,
       lng: location.lng,
       address,
@@ -252,7 +255,19 @@ export function AddToiletForm() {
           }}
           maxLength={100}
           required
+          lang="en"
           placeholder={t('add.namePlaceholder')}
+          className={inputClass}
+        />
+      </Field>
+
+      <Field label={t('add.nameKo')}>
+        <input
+          value={nameKo}
+          onChange={(e) => setNameKo(e.target.value)}
+          maxLength={100}
+          lang="ko"
+          placeholder={t('add.nameKoPlaceholder')}
           className={inputClass}
         />
       </Field>
@@ -356,7 +371,7 @@ export function AddToiletForm() {
                   href={`/${locale}/toilets/${d.id}`}
                   className="bg-surface flex min-h-11 items-center justify-between gap-3 rounded-xl px-3.5 text-[15px] font-medium"
                 >
-                  <span className="truncate">{d.name}</span>
+                  <span className="truncate">{toiletName(d, locale)}</span>
                   <span className="text-ink-soft shrink-0 text-sm font-normal">
                     {t('add.duplicateDistance', {
                       distance: formatDistance(d.distanceM, locale),

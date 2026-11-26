@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Badge, Button, buttonClass, Notice } from '@/components/ui';
 import { api, ApiClientError, errorMessage } from '@/features/api/client';
 import { loginHref } from '@/features/auth/login';
-import { formatAgo } from '@/features/toilets/format';
+import { formatAgo, toiletName } from '@/features/toilets/format';
 import type { ModerationQueue as Queue, QueueToilet } from '@/features/toilets/types';
 import { useI18n } from '@/i18n/I18nProvider';
 
@@ -119,6 +119,8 @@ export function ModerationQueue() {
       >
         {toilet.name}
       </Link>
+      {/* Moderators see both names, so they can spot a missing or wrong translation */}
+      <p className="text-ink-soft text-sm">{toilet.nameKo ?? t('admin.noKoreanName')}</p>
       <p className="text-ink-soft mt-1 text-sm">
         {[
           t(`toilet.bidetType.${toilet.bidetType}`),
@@ -153,7 +155,7 @@ export function ModerationQueue() {
               href={`/${locale}/toilets/${report.toilet.id}`}
               className="text-[15px] underline underline-offset-4"
             >
-              {report.toilet.name}
+              {toiletName(report.toilet, locale)}
             </Link>
             {report.note && <p className="mt-1 text-sm">{report.note}</p>}
             <p className="text-ink-soft mt-1 text-sm">
