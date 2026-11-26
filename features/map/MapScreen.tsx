@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { CustomOverlayMap, Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
-import { DropletIcon, LocateIcon, PlusIcon } from '@/components/icons';
+import { DropletIcon, FilterIcon, LocateIcon, PlusIcon } from '@/components/icons';
 import { Chip } from '@/components/ui';
 import { api, errorMessage } from '@/features/api/client';
 import { AccountMenu } from '@/features/auth/AccountMenu';
@@ -33,6 +33,7 @@ export function MapScreen() {
   const [selected, setSelected] = useState<ToiletPin | null>(null);
   const [myLocation, setMyLocation] = useState<LatLng | null>(null);
   const [finding, setFinding] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -272,29 +273,53 @@ export function MapScreen() {
           </div>
         </div>
 
-        <div
-          role="group"
-          aria-label={t('filters.label')}
-          className="no-scrollbar pointer-events-auto flex gap-2 overflow-x-auto px-3 pb-2"
-        >
-          <Chip pressed={filters.open24h} onToggle={() => toggle('open24h')}>
-            {t('filters.open24h')}
-          </Chip>
-          <Chip pressed={filters.free} onToggle={() => toggle('free')}>
-            {t('filters.free')}
-          </Chip>
-          <Chip pressed={filters.wheelchair} onToggle={() => toggle('wheelchair')}>
-            {t('filters.wheelchair')}
-          </Chip>
-          <Chip pressed={filters.gender === 'female'} onToggle={() => toggleGender('female')}>
-            {t('filters.female')}
-          </Chip>
-          <Chip pressed={filters.gender === 'male'} onToggle={() => toggleGender('male')}>
-            {t('filters.male')}
-          </Chip>
-          <Chip pressed={filters.verified} onToggle={() => toggle('verified')}>
-            {t('filters.verified')}
-          </Chip>
+        <div className="pointer-events-none flex items-start gap-2 px-3 pb-2">
+          <button
+            type="button"
+            aria-label={t('filters.label')}
+            aria-expanded={filtersOpen}
+            aria-controls="map-filters"
+            onClick={() => setFiltersOpen((open) => !open)}
+            className={`shadow-float text-ink bg-surface hover:bg-foam pointer-events-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors ${filtersOpen ? 'text-water' : ''}`}
+          >
+            <FilterIcon />
+          </button>
+
+          <div
+            id="map-filters"
+            role="group"
+            aria-label={t('filters.label')}
+            aria-hidden={!filtersOpen}
+            inert={!filtersOpen}
+            className={`no-scrollbar pointer-events-auto flex min-w-0 gap-2 overflow-x-auto pt-1 transition-[translate,opacity] duration-200 ease-in-out motion-reduce:transition-none ${filtersOpen ? 'translate-x-0 opacity-100' : 'pointer-events-none -translate-x-3 opacity-0'}`}
+          >
+            <Chip shadow={false} pressed={filters.open24h} onToggle={() => toggle('open24h')}>
+              {t('filters.open24h')}
+            </Chip>
+            <Chip shadow={false} pressed={filters.free} onToggle={() => toggle('free')}>
+              {t('filters.free')}
+            </Chip>
+            <Chip shadow={false} pressed={filters.wheelchair} onToggle={() => toggle('wheelchair')}>
+              {t('filters.wheelchair')}
+            </Chip>
+            <Chip
+              shadow={false}
+              pressed={filters.gender === 'female'}
+              onToggle={() => toggleGender('female')}
+            >
+              {t('filters.female')}
+            </Chip>
+            <Chip
+              shadow={false}
+              pressed={filters.gender === 'male'}
+              onToggle={() => toggleGender('male')}
+            >
+              {t('filters.male')}
+            </Chip>
+            <Chip shadow={false} pressed={filters.verified} onToggle={() => toggle('verified')}>
+              {t('filters.verified')}
+            </Chip>
+          </div>
         </div>
 
         {(toast ?? status) && (
