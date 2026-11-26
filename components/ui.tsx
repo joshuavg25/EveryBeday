@@ -31,10 +31,12 @@ export function Button({
 export function Chip({
   pressed,
   onToggle,
+  shadow = true,
   children,
 }: {
   pressed: boolean;
   onToggle: () => void;
+  shadow?: boolean;
   children: ReactNode;
 }) {
   return (
@@ -42,8 +44,8 @@ export function Chip({
       type="button"
       aria-pressed={pressed}
       onClick={onToggle}
-      className={`shadow-float min-h-9 shrink-0 rounded-full px-3.5 text-sm font-medium whitespace-nowrap transition-colors ${
-        pressed ? 'bg-ink text-white' : 'text-ink hover:bg-foam bg-surface'
+      className={`${shadow ? 'shadow-float' : ''} min-h-9 shrink-0 rounded-full px-3.5 text-sm font-medium whitespace-nowrap transition-colors ${
+        pressed ? 'bg-[#0b8a83] text-white' : 'text-ink hover:bg-foam bg-surface'
       }`}
     >
       {children}

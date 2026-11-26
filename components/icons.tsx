@@ -83,6 +83,12 @@ export const PlusIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const FilterIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 7h16M7 12h10M10 17h4" />
+  </Icon>
+);
+
 export const CloseIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="m6 6 12 12M18 6 6 18" />
