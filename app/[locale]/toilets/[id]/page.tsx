@@ -6,7 +6,7 @@ import { DirectionsIcon } from '@/components/icons';
 import { buttonClass, PageShell } from '@/components/ui';
 import { MiniMap } from '@/features/map/MiniMap';
 import { ConfirmBidet } from '@/features/toilets/ConfirmBidet';
-import { kakaoDirectionsUrl } from '@/features/toilets/format';
+import { kakaoDirectionsUrl, secondaryName, toiletName } from '@/features/toilets/format';
 import { ReportProblem } from '@/features/toilets/ReportProblem';
 import { uuidSchema } from '@/features/toilets/schemas';
 import { ShareButton } from '@/features/toilets/ShareButton';
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const toilet = await loadToilet(id);
   if (!toilet) return { title: t('toilet.notFoundTitle'), robots: { index: false } };
   return {
-    title: toilet.name,
+    title: toiletName(toilet, locale),
     description: [
       t(`toilet.bidetType.${toilet.bidetType}`),
       t(`toilet.access.${toilet.access}`),
@@ -73,7 +73,12 @@ async function ToiletContent({ params }: Pick<Props, 'params'>) {
   return (
     <main>
       {back}
-      <h1 className="mt-3 text-[28px] leading-tight font-bold tracking-tight">{toilet.name}</h1>
+      <h1 className="mt-3 text-[28px] leading-tight font-bold tracking-tight">
+        {toiletName(toilet, locale)}
+      </h1>
+      {secondaryName(toilet, locale) && (
+        <p className="text-ink-soft mt-1">{secondaryName(toilet, locale)}</p>
+      )}
 
       <div className="mt-5">
         <MiniMap lat={toilet.lat} lng={toilet.lng} unverified={toilet.status === 'pending'} />
@@ -89,7 +94,7 @@ async function ToiletContent({ params }: Pick<Props, 'params'>) {
           <DirectionsIcon width={18} height={18} />
           {t('toilet.directions')}
         </a>
-        <ShareButton path={`/${locale}/toilets/${toilet.id}`} title={toilet.name} />
+        <ShareButton path={`/${locale}/toilets/${toilet.id}`} title={toiletName(toilet, locale)} />
       </div>
 
       <div className="bg-surface mt-6 rounded-2xl p-5">

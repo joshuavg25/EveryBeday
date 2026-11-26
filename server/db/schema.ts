@@ -46,7 +46,10 @@ export const toilets = pgTable(
   'toilets',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    // English name, always present: EveryBeday is aimed at visitors who may not read Korean
     name: text('name').notNull(),
+    // Korean name, optional. Shown instead of `name` on the Korean site when present.
+    nameKo: text('name_ko'),
     // x = longitude, y = latitude (WGS84). Drizzle creates this column without an SRID,
     // so queries compare it with SRID-less geometries and cast to geography for meters.
     location: geometry('location', { type: 'point', mode: 'xy', srid: 4326 }).notNull(),

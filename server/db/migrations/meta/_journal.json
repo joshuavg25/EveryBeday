@@ -15,6 +15,13 @@
       "when": 1794823704087,
       "tag": "0001_users_confirmations_reports",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795696021188,
+      "tag": "0002_toilet_name_ko",
+      "breakpoints": true
     }
   ]
 }

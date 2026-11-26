@@ -39,6 +39,7 @@ const metersTo = (lng: number, lat: number) =>
 const pinColumns = {
   id: toilets.id,
   name: toilets.name,
+  nameKo: toilets.nameKo,
   lng: lngOf,
   lat: latOf,
   floor: toilets.floor,
@@ -168,7 +169,12 @@ export async function findNearby(lat: number, lng: number, radiusM: number) {
   // ~0.0005 degrees is roughly 45-55 m in Seoul: a cheap index prefilter before the exact check
   const pad = (radiusM / 30) * 0.0005;
   const rows = await db
-    .select({ id: toilets.id, name: toilets.name, distanceM: metersTo(lng, lat) })
+    .select({
+      id: toilets.id,
+      name: toilets.name,
+      nameKo: toilets.nameKo,
+      distanceM: metersTo(lng, lat),
+    })
     .from(toilets)
     .where(
       and(
@@ -204,6 +210,7 @@ export async function createToilet(user: SessionUser, input: z.output<typeof cre
     .insert(toilets)
     .values({
       name: input.name,
+      nameKo: input.nameKo,
       location: { x: input.lng, y: input.lat },
       address: input.address,
       buildingName: input.buildingName,
@@ -394,6 +401,7 @@ export async function getModerationQueue() {
         reportedBy: users.name,
         toiletId: toilets.id,
         toiletName: toilets.name,
+        toiletNameKo: toilets.nameKo,
         toiletStatus: toilets.status,
         lng: lngOf,
         lat: latOf,
@@ -418,6 +426,7 @@ export async function getModerationQueue() {
       toilet: {
         id: r.toiletId,
         name: r.toiletName,
+        nameKo: r.toiletNameKo,
         status: r.toiletStatus,
         lat: r.lat,
         lng: r.lng,
