@@ -349,17 +349,17 @@ export function MapScreen() {
               {finding ? t('map.finding') : t('map.nearest')}
             </button>
           )}
-          <div className="pointer-events-auto flex flex-col gap-2.5">
-            {!selected && (
-              <Link
-                href={`/${locale}/add`}
-                aria-label={t('nav.addToilet')}
-                title={t('nav.addToilet')}
-                className="shadow-float text-ink bg-surface flex h-11 w-11 items-center justify-center rounded-full"
-              >
-                <PlusIcon />
-              </Link>
-            )}
+          <div
+            className={`pointer-events-auto flex flex-col gap-2.5 ${selected ? 'sm:fixed sm:right-3 sm:bottom-8' : ''}`}
+          >
+            <Link
+              href={`/${locale}/add`}
+              aria-label={t('nav.addToilet')}
+              title={t('nav.addToilet')}
+              className="shadow-float text-ink bg-surface flex h-11 w-11 items-center justify-center rounded-full"
+            >
+              <PlusIcon />
+            </Link>
             <button
               type="button"
               onClick={showMyLocation}
