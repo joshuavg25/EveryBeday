@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  devIndicators: { position: 'bottom-right' },
+  devIndicators: { position: 'bottom-left' },
 };
 
 export default nextConfig;
