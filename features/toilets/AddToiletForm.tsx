@@ -51,7 +51,7 @@ function Choice<T extends string>({
             key={option}
             className={`flex min-h-11 cursor-pointer items-center rounded-full border px-4 text-[15px] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 ${
               value === option
-                ? 'border-ink bg-ink text-white'
+                ? 'border-[#0b8a83] bg-[#0b8a83] text-white hover:bg-[#086f69]'
                 : 'border-line text-ink hover:bg-mist bg-surface'
             }`}
           >
