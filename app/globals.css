@@ -28,11 +28,6 @@ body {
   height: 100%;
 }
 
-/* The bootstrap script resolves the initial theme before revealing the page. */
-html:not([data-theme-ready]) {
-  visibility: hidden;
-}
-
 body {
   background: var(--color-mist);
   color: var(--color-ink);
